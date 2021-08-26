@@ -93,19 +93,19 @@ class A {
         for(Field field: object.getClass().getDeclaredFields()){
             if(Modifier.isPrivate(field.getModifiers())){
                 field.setAccessible(true);
-                AnnotatedType type = field.getAnnotatedType();
-                if(type.toString().equals("boolean") ){
+                Class<?> type = field.getType();
+                if(type == boolean.class ){
                     field.set(object, false);
-                } else if(type.toString().equals("byte") || type.toString().equals("short") ||
-                        type.toString().equals("int")){
+                } else if(type == byte.class || type == short.class ||
+                        type == int.class){
                     field.set(object, 0);
-                } else if(type.toString().equals("long") ){
+                } else if(type == long.class ){
                     field.set(object, 0L);
-                } else if(type.toString().equals("float") ){
+                } else if(type == float.class ){
                     field.set(object, 0.0f);
-                } else if(type.toString().equals("double") ){
+                } else if(type == double.class ){
                     field.set(object, 0.0d);
-                } else if(type.toString().equals("char") ){
+                } else if(type == char.class ){
                     field.set(object, '\u0000');
                 } else{
                     field.set(object, null);
